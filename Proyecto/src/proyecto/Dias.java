@@ -4,25 +4,25 @@ package proyecto;
 import java.util.*;
 
 
-public class Semana {
+public class Dias {
     
- private String dia;
+ private String nombre;
  private ArrayList<Actividades> actividad;
  
-    public Semana(){
+    public Dias(){
         
     }
-    public Semana(String dia) {
-        this.dia = dia;
+    public Dias(String dia) {
+        this.nombre = dia;
         this.actividad = new ArrayList<Actividades>();
     }
 
-    public String getDia() {
-        return dia;
+    public String getNombre() {
+        return nombre;
     }
    
-    public void setDia(String dia) {
-        this.dia = dia;
+    public void setNombre(String dia) {
+        this.nombre = dia;
     }
     /*Aqui se realiza la anidacion de arreglos ya que cada dia de la semana tendra anidado
     su actividad y caracteristicas correspondientes.*/
@@ -60,9 +60,9 @@ public class Semana {
     }
     public boolean verificarVacio(){
         if(actividad.size() == 0)
-            return true;
-        else
             return false;
+        else
+            return true;
     }
     public boolean cambiarHora(int seleccionActividad, int horaIniNueva, int horaTermNueva){
          for(int i = 0 ; i <actividad.size() ; i++){

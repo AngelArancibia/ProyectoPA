@@ -5,18 +5,42 @@ import java.io.*;
 
 public class AdmiProject  {
     BufferedReader leer = new BufferedReader(new InputStreamReader(System.in)); 
-    private Semana[] dias = new Semana[7];
+    private ArrayList<Dias> semana;
     public AdmiProject(){
         
     }
-    public void setDias(){        
-    dias[0]= new Semana("Lunes");
-    dias[1]= new Semana("Martes");
-    dias[2]= new Semana("Miercoles");
-    dias[3]= new Semana("Jueves");
-    dias[4]= new Semana("Viernes");
-    dias[5]= new Semana("Sabado");
-    dias[6]= new Semana("Domingo");
+    public void setDias(){
+        Dias aux = new Dias();
+        for(int i = 0; i < 7; i++){
+            if (i==0){
+                semana.add(aux);
+                semana.get(i).setNombre("Lunes");
+            }
+            if (i==1){
+                semana.add(aux);
+                semana.get(i).setNombre("Martes");                
+            }
+            if (i==2){
+                semana.add(aux);
+                semana.get(i).setNombre("Miercoles");    
+            }
+            if (i==3){
+                semana.add(aux);
+                semana.get(i).setNombre("Jueves");
+            }
+            if (i==4){
+                semana.add(aux);
+                semana.get(i).setNombre("Viernes");
+            }
+            if (i==5){
+                semana.add(aux);
+                semana.get(i).setNombre("Sabado");
+            }
+            if (i==6){
+                semana.add(aux);
+                semana.get(i).setNombre("Domingo");
+            }
+        }
     }
     
     
@@ -25,7 +49,7 @@ public class AdmiProject  {
         while(exit == false){
             System.out.println("Semana :");
             for ( int i = 0 ; i < 7 ; i++){
-                System.out.println("  " + (i+1) + ".- " + dias[i].getDia());
+                System.out.println("  " + (i+1) + ".- " + semana.get(i).getNombre());
             }
             System.out.println();
             System.out.println("Seleccione dia al cual agregara la actividad :");
@@ -40,7 +64,7 @@ public class AdmiProject  {
             aux.setHoraInicio(horaIni);
             aux.setHoraTermino(horaTerm);
             aux.setTipo(tipo);
-            if(dias[seleccion].agregarActividad(aux)){ 
+            if(semana.get(seleccion).agregarActividad(aux)){ 
                 System.out.println();
                 System.out.println(" - La actividad se agrego correctamente.");
                 System.out.println();
@@ -65,9 +89,9 @@ public class AdmiProject  {
 
     public void mostrarSemana(){
         for(int i = 0 ; i < 7 ; i++){
-        System.out.println(dias[i].getDia());
+        System.out.println(semana.get(i).getNombre());
         System.out.println();
-        dias[i].mostrarActividades();
+        semana.get(i).mostrarActividades();
         System.out.println();
         }
     }
@@ -75,39 +99,38 @@ public class AdmiProject  {
         System.out.println();
         System.out.println("Semana :");
         for ( int i = 0 ; i < 7 ; i++){
-            System.out.println( (i+1) + ".- " + dias[i].getDia());
+            System.out.println( (i+1) + ".- " + semana.get(i).getNombre());
         }
         System.out.println();
         System.out.println("Seleccione dia del cual desea eliminar una actividad :");
         int seleccion = Integer.parseInt(leer.readLine()) - 1;
-        if(dias[seleccion].verificarVacio()){
+        if(semana.get(seleccion).verificarVacio()){
             System.out.println();
-            System.out.println("Lista de actividades dia " + dias[seleccion].getDia());
-            dias[seleccion].mostrarActividades();
+            System.out.println("Lista de actividades dia " + semana.get(seleccion).getNombre());
+            semana.get(seleccion).mostrarActividades();
             System.out.println();
             System.out.println("Seleccione la actividad que desea eliminar :");
-
-            int seleccionActividad = Integer.parseInt(leer.readLine());
-            dias[seleccion].eliminarActividad(seleccionActividad - 1);
+            int seleccionActividad = Integer.parseInt(leer.readLine()) - 1;
+            semana.get(seleccion).eliminarActividad(seleccionActividad);
             System.out.println();
             System.out.println(" - La actividad se elimino correctamente.");
             System.out.println();
         }else{
             System.out.println();
-            System.out.println(" - El dia no registra actividades para eliminar.");
+            System.out.println(" - El dia " + semana.get(seleccion).getNombre() + " no registra actividades para eliminar.");
             System.out.println();
         }
     }
     public void editarActividad() throws IOException{
           System.out.println("Semana :");
         for ( int i = 0 ; i < 7 ; i++){
-            System.out.println("  " + (i+1) + ".- " + dias[i].getDia());
+            System.out.println("  " + (i+1) + ".- " + semana.get(i).getNombre());
         }
         System.out.println();
         System.out.println("Seleccione dia del cual editara la actividad :");
         int seleccion = Integer.parseInt(leer.readLine()) - 1;
         System.out.println();
-        dias[seleccion].mostrarActividades();
+        semana.get(seleccion).mostrarActividades();
         System.out.println();
         System.out.println("Seleccione seleccione la actividad que desea editar :");
         int seleccionActividad = Integer.parseInt(leer.readLine()) - 1;
@@ -129,13 +152,13 @@ public class AdmiProject  {
                 System.out.println("Ingrese nueva hora de termino.");
                 int nuevaHoraTermino = Integer.parseInt(leer.readLine());
                 System.out.println();
-                    if(dias[seleccion].verificarVacio()){
+                    if(semana.get(seleccion).verificarVacio()){
                         System.out.println();
                         System.out.println(" - El dia no registra actividades.");
                         System.out.println();
                         exit = true;
                     }else{
-                        if(dias[seleccion].cambiarHora(seleccionActividad, nuevaHoraInicio, nuevaHoraTermino)){
+                        if(semana.get(seleccion).cambiarHora(seleccionActividad, nuevaHoraInicio, nuevaHoraTermino)){
                             System.out.println();
                             System.out.println(" - La hora se cambio correctamente.");
                             System.out.println();
@@ -158,23 +181,23 @@ public class AdmiProject  {
                 break;
             }
             case 2:{
-                Actividades actividadAux = new Actividades();
-                actividadAux = dias[seleccion].getActividad(seleccionActividad);
+                Actividades actividadAux;
+                actividadAux = semana.get(seleccion).getActividad(seleccionActividad);
                 boolean exit = false;
                 while(exit == false){
                     System.out.println();
                     System.out.println("Semana :");
                     for ( int i = 0 ; i < 7 ; i++){
-                        System.out.println("  " + (i+1) + ".- " + dias[i].getDia());
+                        System.out.println("  " + (i+1) + ".- " + semana.get(i).getNombre());
                     }
                     System.out.println();
                     System.out.println("Seleccion el dia al cual desea mover la actividad.");
                     System.out.println();
                     int nuevoDia = Integer.parseInt(leer.readLine()) - 1;
                     System.out.println();
-                    if(dias[nuevoDia ].agregarActividad(actividadAux)){
+                    if(semana.get(nuevoDia).agregarActividad(actividadAux)){
                         System.out.println(" - La actividad se cambio de dia correctamente.");
-                        dias[seleccion].eliminarActividad(seleccionActividad);
+                        semana.get(seleccion).eliminarActividad(seleccionActividad);
                         exit = true;
                     }else{
                         System.out.println(" - La actividad que desea cambiar presenta choque de horario en el dia seleccionado.");
@@ -185,8 +208,6 @@ public class AdmiProject  {
                         int opcion = Integer.parseInt(leer.readLine());
                         if (opcion == 0)
                             exit = true;
-                        else
-                            exit = false;
                     }
                 }
                 break;
