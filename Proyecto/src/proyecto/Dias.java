@@ -14,7 +14,7 @@ public class Dias {
     }
     public Dias(String dia) {
         this.nombre = dia;
-        this.actividad = new ArrayList<Actividades>();
+        this.actividad = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -31,7 +31,7 @@ public class Dias {
             actividad.add(aux);
             return true;
         }else{
-            for(int i = 0 ; i <actividad.size() ; i++){
+            for(int i = 0 ; i < actividad.size() ; i++){
                 if(actividad.get(i).getHoraInicio() == aux.getHoraInicio()){
                     return false;
                 }else{

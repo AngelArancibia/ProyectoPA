@@ -5,42 +5,39 @@ import java.io.*;
 
 public class AdmiProject  {
     BufferedReader leer = new BufferedReader(new InputStreamReader(System.in)); 
-    private ArrayList<Dias> semana;
+    private ArrayList<Dias> semana = new ArrayList<>();
     public AdmiProject(){
         
     }
     public void setDias(){
-        Dias aux = new Dias();
         for(int i = 0; i < 7; i++){
-            if (i==0){
-                semana.add(aux);
-                semana.get(i).setNombre("Lunes");
+            Dias aux = new Dias();
+            switch (i){
+                case 0:
+                    aux.setNombre("Lunes");
+                    break;
+                case 1:
+                    aux.setNombre("Martes");
+                    break;
+                case 2:
+                    aux.setNombre("Miercoles");
+                    break;
+                case 3:
+                    aux.setNombre("Jueves");
+                    break;
+                case 4:
+                    aux.setNombre("Viernes");
+                    break;
+                case 5:
+                    aux.setNombre("Sabado");
+                    break;
+                case 6:
+                    aux.setNombre("Domingo");
+                    break;
             }
-            if (i==1){
-                semana.add(aux);
-                semana.get(i).setNombre("Martes");                
-            }
-            if (i==2){
-                semana.add(aux);
-                semana.get(i).setNombre("Miercoles");    
-            }
-            if (i==3){
-                semana.add(aux);
-                semana.get(i).setNombre("Jueves");
-            }
-            if (i==4){
-                semana.add(aux);
-                semana.get(i).setNombre("Viernes");
-            }
-            if (i==5){
-                semana.add(aux);
-                semana.get(i).setNombre("Sabado");
-            }
-            if (i==6){
-                semana.add(aux);
-                semana.get(i).setNombre("Domingo");
-            }
+            semana.add(aux);
         }
+        
     }
     
     
@@ -60,11 +57,11 @@ public class AdmiProject  {
             int horaIni =  Integer.parseInt(leer.readLine());
             System.out.println("Ingrese hora de termino :");
             int horaTerm =  Integer.parseInt(leer.readLine());
-            Actividades aux = new Actividades();
-            aux.setHoraInicio(horaIni);
-            aux.setHoraTermino(horaTerm);
-            aux.setTipo(tipo);
-            if(semana.get(seleccion).agregarActividad(aux)){ 
+            Actividades auxActividades = new Actividades();
+            auxActividades.setHoraInicio(horaIni);
+            auxActividades.setHoraTermino(horaTerm);
+            auxActividades.setTipo(tipo);
+            if(semana.get(seleccion).agregarActividad(auxActividades)){ 
                 System.out.println();
                 System.out.println(" - La actividad se agrego correctamente.");
                 System.out.println();
@@ -79,9 +76,6 @@ public class AdmiProject  {
                 int indice = Integer.parseInt(leer.readLine());
                 if(indice == 0)
                     exit = true;
-                else
-                    exit = false;
-                
             }
         }
     }

@@ -16,14 +16,6 @@ public class Actividades {
     public Actividades (){
         
     }
-    /*Aqui se puede ver la sobrecarga ya que si el usuario no ingresa hora de termino
-    se asumira que realizara la actividad por 2 hrs.*/
-    public Actividades(String tipo , int horaInicio){
-     this.tipo = tipo;
-     this.horaInicio = horaInicio;
-     horaTermino = (horaInicio + 2);
-    }
-
     public String getTipo() {
         return tipo;
     }
