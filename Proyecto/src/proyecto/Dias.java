@@ -32,11 +32,15 @@ public class Dias {
             return true;
         }else{
             for(int i = 0 ; i < actividad.size() ; i++){
-                if(actividad.get(i).getHoraInicio() == aux.getHoraInicio()){
+                if((actividad.get(i).getHoraInicio() > aux.getHoraInicio() && actividad.get(i).getHoraInicio() < aux.getHoraTermino()) || (actividad.get(i).getHoraTermino() > aux.getHoraInicio() && actividad.get(i).getHoraTermino() < aux.getHoraTermino()) ){
                     return false;
                 }else{
+                    if((actividad.get(i).getHoraInicio() == aux.getHoraTermino() && actividad.get(i).getMinutosInicio()< aux.getMinutosTermino()) || (actividad.get(i).getHoraTermino() == aux.getHoraInicio() && actividad.get(i).getMinutosTermino()> aux.getMinutosInicio()))
+                        return false;
+                    else{
                     actividad.add(aux); 
                     return true;
+                    }
                 }
             }
         }
@@ -50,8 +54,8 @@ public class Dias {
                 System.out.println(" - Actividad " + (i+1) + ":");
                 Actividades actividadAux = actividad.get(i);
                 System.out.println("   * Tipo: " + actividadAux.getTipo());
-                System.out.println("   * Hora inicio: " + actividadAux.getHoraInicio());
-                System.out.println("   * Hora termino: " + actividadAux.getHoraTermino());
+                System.out.println("   * Hora inicio: " + actividadAux.getHoraInicio()+":"+actividadAux.getMinutosInicio() );
+                System.out.println("   * Hora termino: " + actividadAux.getHoraTermino()+":"+actividadAux.getMinutosTermino());
             }
         }
     }

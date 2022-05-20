@@ -11,28 +11,28 @@ public class AdmiProject  {
     }
     public void setDias(){
         for(int i = 0; i < 7; i++){
-            Dias aux = new Dias();
+            Dias aux = null;
             switch (i){
                 case 0:
-                    aux.setNombre("Lunes");
+                    aux = new Dias("Lunes");
                     break;
                 case 1:
-                    aux.setNombre("Martes");
+                    aux = new Dias("Martes");
                     break;
                 case 2:
-                    aux.setNombre("Miercoles");
+                    aux = new Dias("Miercoles");
                     break;
                 case 3:
-                    aux.setNombre("Jueves");
+                    aux = new Dias("Jueves");
                     break;
                 case 4:
-                    aux.setNombre("Viernes");
+                    aux = new Dias("Viernes");
                     break;
                 case 5:
-                    aux.setNombre("Sabado");
+                    aux = new Dias("Sabado");
                     break;
                 case 6:
-                    aux.setNombre("Domingo");
+                    aux = new Dias("Domingo");
                     break;
             }
             semana.add(aux);
@@ -49,18 +49,25 @@ public class AdmiProject  {
                 System.out.println("  " + (i+1) + ".- " + semana.get(i).getNombre());
             }
             System.out.println();
-            System.out.println("Seleccione dia al cual agregara la actividad :");
-            int seleccion = Integer.parseInt(leer.readLine()) - 1;
+            int seleccion = seleccionDia();
             System.out.println("Especifique el tipo de actividad :");
             String tipo = leer.readLine();
-            System.out.println("Ingrese hora de incio :");
+            System.out.println("Ingrese hora de incio");
+            System.out.println("Ingrese hora :");
             int horaIni =  Integer.parseInt(leer.readLine());
-            System.out.println("Ingrese hora de termino :");
+            System.out.println("Ingrese minutos :");
+            int minutosInicio =  Integer.parseInt(leer.readLine());
+            System.out.println("Ingrese hora de termino");
+            System.out.println("Ingrese hora :");
             int horaTerm =  Integer.parseInt(leer.readLine());
+            System.out.println("Ingrese minutos :");
+            int minutosTermino =  Integer.parseInt(leer.readLine());
             Actividades auxActividades = new Actividades();
-            auxActividades.setHoraInicio(horaIni);
-            auxActividades.setHoraTermino(horaTerm);
             auxActividades.setTipo(tipo);
+            auxActividades.setHoraInicio(horaIni);
+            auxActividades.setMinutosInicio(minutosInicio);
+            auxActividades.setHoraTermino(horaTerm);
+            auxActividades.setMinutosTermino(minutosTermino);
             if(semana.get(seleccion).agregarActividad(auxActividades)){ 
                 System.out.println();
                 System.out.println(" - La actividad se agrego correctamente.");
@@ -96,8 +103,7 @@ public class AdmiProject  {
             System.out.println( (i+1) + ".- " + semana.get(i).getNombre());
         }
         System.out.println();
-        System.out.println("Seleccione dia del cual desea eliminar una actividad :");
-        int seleccion = Integer.parseInt(leer.readLine()) - 1;
+        int seleccion = seleccionDia();
         if(semana.get(seleccion).verificarVacio()){
             System.out.println();
             System.out.println("Lista de actividades dia " + semana.get(seleccion).getNombre());
@@ -121,8 +127,7 @@ public class AdmiProject  {
             System.out.println("  " + (i+1) + ".- " + semana.get(i).getNombre());
         }
         System.out.println();
-        System.out.println("Seleccione dia del cual editara la actividad :");
-        int seleccion = Integer.parseInt(leer.readLine()) - 1;
+        int seleccion = seleccionDia();
         System.out.println();
         semana.get(seleccion).mostrarActividades();
         System.out.println();
@@ -207,6 +212,19 @@ public class AdmiProject  {
                 break;
             }
         }
+    }
+    private int seleccionDia() throws IOException{
+        boolean exit = false;
+        int seleccion = 0;
+        System.out.println("Seleccione dia al cual agregara la actividad :");
+        while(!exit){
+            seleccion = Integer.parseInt(leer.readLine()) - 1;
+            if (seleccion < 0 || seleccion > 8)
+                System.out.println("Dia seleccionado invalido. Por favor ingrese nuevamente :");
+            else
+                exit = true;
+        }
+        return seleccion;
     }
 }
    
