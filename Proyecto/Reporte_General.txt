@@ -1,0 +1,17 @@
+Dia Lunes
+Reporte actividad academica: 
+Hora inicio: 12:0
+Hora termino: 14:50
+Sala asignada: ibc 1-4
+Dia Martes
+ - El dia no registra actividades.
+Dia Miercoles
+ - El dia no registra actividades.
+Dia Jueves
+ - El dia no registra actividades.
+Dia Viernes
+ - El dia no registra actividades.
+Dia Sabado
+ - El dia no registra actividades.
+Dia Domingo
+ - El dia no registra actividades.

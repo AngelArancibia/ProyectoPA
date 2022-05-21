@@ -43,46 +43,112 @@ public class AdmiProject  {
     
     public void agregarActividad() throws IOException {
         boolean exit = false;
-        while(exit == false){
+        while(!exit){
             System.out.println("Semana :");
             for ( int i = 0 ; i < 7 ; i++){
                 System.out.println("  " + (i+1) + ".- " + semana.get(i).getNombre());
             }
             System.out.println();
             int seleccion = seleccionDia();
-            System.out.println("Especifique el tipo de actividad :");
-            String tipo = leer.readLine();
+            System.out.println("Especifique el tipo de actividad ");
+            System.out.println("1.- Laboral.");
+            System.out.println("2.- Academica.");
+            System.out.println("3.- Otros.");
+            System.out.println("0.- Salir.");
+            System.out.println();
+            int indice = Integer.parseInt(leer.readLine());
+            if(indice == 0){
+                break;
+            }
             System.out.println("Ingrese hora de incio");
             System.out.println("Ingrese hora :");
-            int horaIni =  Integer.parseInt(leer.readLine());
+            int horaInicio =  Integer.parseInt(leer.readLine());
             System.out.println("Ingrese minutos :");
             int minutosInicio =  Integer.parseInt(leer.readLine());
             System.out.println("Ingrese hora de termino");
             System.out.println("Ingrese hora :");
-            int horaTerm =  Integer.parseInt(leer.readLine());
+            int horaTermino =  Integer.parseInt(leer.readLine());
             System.out.println("Ingrese minutos :");
             int minutosTermino =  Integer.parseInt(leer.readLine());
-            Actividades auxActividades = new Actividades();
-            auxActividades.setTipo(tipo);
-            auxActividades.setHoraInicio(horaIni);
-            auxActividades.setMinutosInicio(minutosInicio);
-            auxActividades.setHoraTermino(horaTerm);
-            auxActividades.setMinutosTermino(minutosTermino);
-            if(semana.get(seleccion).agregarActividad(auxActividades)){ 
-                System.out.println();
-                System.out.println(" - La actividad se agrego correctamente.");
-                System.out.println();
-                exit = true;
-            }else{
-                System.out.println();
-                System.out.println(" - La actividad presenta choque de horario.");
-                System.out.println();
-                System.out.println("1.- Volver a ingresar.");
-                System.out.println("0.- Salir.");
-                System.out.println();
-                int indice = Integer.parseInt(leer.readLine());
-                if(indice == 0)
-                    exit = true;
+            switch(indice){
+                case 1:
+                    System.out.println("Indique el lugar de trabajo :");
+                    String ubicacion = leer.readLine();
+                    Laborales actividadLaboral = new Laborales();
+                    actividadLaboral.setHoraInicio(horaInicio);
+                    actividadLaboral.setMinutosInicio(minutosInicio);
+                    actividadLaboral.setHoraTermino(horaTermino);
+                    actividadLaboral.setMinutosTermino(minutosTermino);
+                    actividadLaboral.setUbicacion(ubicacion);
+                    if(semana.get(seleccion).agregarActividad(actividadLaboral)){ 
+                        System.out.println();
+                        System.out.println(" - La actividad se agrego correctamente.");
+                        System.out.println();
+                        exit = true;
+                    }else{
+                    System.out.println();
+                    System.out.println(" - La actividad presenta choque de horario.");
+                    System.out.println();
+                    System.out.println("1.- Volver a ingresar.");
+                    System.out.println("0.- Salir.");
+                    System.out.println();
+                    int i = Integer.parseInt(leer.readLine());
+                    if(i == 0)
+                        exit = true;
+                    }
+                break;
+                case 2:
+                    System.out.println("Indique sala asignada :");
+                    String sala = leer.readLine();
+                    Academica actividadAcademica = new Academica();
+                    actividadAcademica.setHoraInicio(horaInicio);
+                    actividadAcademica.setMinutosInicio(minutosInicio);
+                    actividadAcademica.setHoraTermino(horaTermino);
+                    actividadAcademica.setMinutosTermino(minutosTermino);
+                    actividadAcademica.setSala(sala);
+                    if(semana.get(seleccion).agregarActividad(actividadAcademica)){ 
+                        System.out.println();
+                        System.out.println(" - La actividad se agrego correctamente.");
+                        System.out.println();
+                        exit = true;
+                    }else{
+                    System.out.println();
+                    System.out.println(" - La actividad presenta choque de horario.");
+                    System.out.println();
+                    System.out.println("1.- Volver a ingresar.");
+                    System.out.println("0.- Salir.");
+                    System.out.println();
+                    int i = Integer.parseInt(leer.readLine());
+                    if(i == 0)
+                        exit = true;
+                    }
+                break;
+                case 3:
+                    System.out.println("Indique sala asignada :");
+                    String tipoActividad = leer.readLine();
+                    OtroTipo otroTipoActividad = new OtroTipo();
+                    otroTipoActividad.setHoraInicio(horaInicio);
+                    otroTipoActividad.setMinutosInicio(minutosInicio);
+                    otroTipoActividad.setHoraTermino(horaTermino);
+                    otroTipoActividad.setMinutosTermino(minutosTermino);
+                    otroTipoActividad.setOtroTipo(tipoActividad);
+                    if(semana.get(seleccion).agregarActividad(otroTipoActividad)){ 
+                        System.out.println();
+                        System.out.println(" - La actividad se agrego correctamente.");
+                        System.out.println();
+                        exit = true;
+                    }else{
+                    System.out.println();
+                    System.out.println(" - La actividad presenta choque de horario.");
+                    System.out.println();
+                    System.out.println("1.- Volver a ingresar.");
+                    System.out.println("0.- Salir.");
+                    System.out.println();
+                    int i = Integer.parseInt(leer.readLine());
+                    if(i == 0)
+                        exit = true;
+                    }
+                break;
             }
         }
     }
@@ -226,6 +292,19 @@ public class AdmiProject  {
         }
         return seleccion;
     }
-}
-   
+    public void generarReporteGeneral() throws IOException{
+        String reporte = "";
+        for(Dias auxDias : semana){
+            reporte+= auxDias.generarReporte();
+        }
+        File archivoReporte = new File("Reporte_General.txt");
+        if (archivoReporte.createNewFile())
+            System.out.println("Archivo creado: " + archivoReporte.getName());
+        else
+            System.out.println("El archivo ya existe!. Se sobreescribira el reporte.");
 
+        FileWriter creador = new FileWriter(archivoReporte);
+        creador.write(reporte);
+        creador.close();
+    }
+}

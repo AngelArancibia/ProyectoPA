@@ -2,16 +2,14 @@
 package proyecto;
 
 
-public class Actividades {
+public abstract class Actividades implements Reporte {
     
-    private String tipo;
     private int horaInicio;
     private int horaTermino;
     private int minutosInicio;
     private int minutosTermino;
 
-    public Actividades(String tipo, int horaInicio, int horaTermino, int minutosInicio, int minutosTermino) {
-        this.tipo = tipo;
+    public Actividades(int horaInicio, int horaTermino, int minutosInicio, int minutosTermino) {
         this.horaInicio = horaInicio;
         this.horaTermino = horaTermino;
         this.minutosInicio = minutosInicio;
@@ -36,14 +34,6 @@ public class Actividades {
     public Actividades (){
         
     }
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public int getHoraInicio() {
         return horaInicio;
     }

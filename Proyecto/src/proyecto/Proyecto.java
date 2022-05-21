@@ -17,6 +17,7 @@ public class Proyecto{
             System.out.println("2.- Eliminar actividad");
             System.out.println("3.- Editar actividad");
             System.out.println("4.- Mostrar semana");
+            System.out.println("5.- Generar reporte");
            
             System.out.println("0.- Salir");
             int seleccion = Integer.parseInt(leer.readLine());
@@ -33,6 +34,9 @@ public class Proyecto{
                 case 4:
                     Administrador.mostrarSemana();
                     break;
+                case 5:
+                    Administrador.generarReporteGeneral();
+                    break;
                 case 0:
                     exit = 0;
                     break;
@@ -40,5 +44,3 @@ public class Proyecto{
         }
     }
 }
-    
-

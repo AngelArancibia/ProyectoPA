@@ -4,7 +4,7 @@ package proyecto;
 import java.util.*;
 
 
-public class Dias {
+public class Dias implements Reporte{
     
  private String nombre;
  private ArrayList<Actividades> actividad;
@@ -51,11 +51,29 @@ public class Dias {
             System.out.println(" - El dia no registra actividades.");
         }else{
             for(int i = 0 ; i < actividad.size() ; i++){
-                System.out.println(" - Actividad " + (i+1) + ":");
-                Actividades actividadAux = actividad.get(i);
-                System.out.println("   * Tipo: " + actividadAux.getTipo());
-                System.out.println("   * Hora inicio: " + actividadAux.getHoraInicio()+":"+actividadAux.getMinutosInicio() );
-                System.out.println("   * Hora termino: " + actividadAux.getHoraTermino()+":"+actividadAux.getMinutosTermino());
+                if(actividad.get(i) instanceof Laborales){
+                    System.out.println(" - Actividad " + (i+1) + ":");
+                    Laborales actividadAux = (Laborales)actividad.get(i);
+                    System.out.println("   * Tipo de actividad: Laboral.");
+                    System.out.println("   * Hora inicio: " + actividadAux.getHoraInicio()+":"+actividadAux.getMinutosInicio() );
+                    System.out.println("   * Hora termino: " + actividadAux.getHoraTermino()+":"+actividadAux.getMinutosTermino());
+                    System.out.println("   * Lugar de trabajo: "+ actividadAux.getUbicacion());
+                }
+                if(actividad.get(i) instanceof Academica){
+                    System.out.println(" - Actividad " + (i+1) + ":");
+                    Academica actividadAux = (Academica)actividad.get(i);
+                    System.out.println("   * Tipo de actividad: Academica.");
+                    System.out.println("   * Hora inicio: " + actividadAux.getHoraInicio()+":"+actividadAux.getMinutosInicio() );
+                    System.out.println("   * Hora termino: " + actividadAux.getHoraTermino()+":"+actividadAux.getMinutosTermino());
+                    System.out.println("   * Sala asignada: "+ actividadAux.getSala());
+                }
+                if(actividad.get(i) instanceof OtroTipo){
+                    System.out.println(" - Actividad " + (i+1) + ":");
+                    OtroTipo actividadAux = (OtroTipo)actividad.get(i);
+                    System.out.println("   * Tipo de actividad: "+ actividadAux.getOtroTipo()+".");
+                    System.out.println("   * Hora inicio: " + actividadAux.getHoraInicio()+":"+actividadAux.getMinutosInicio() );
+                    System.out.println("   * Hora termino: " + actividadAux.getHoraTermino()+":"+actividadAux.getMinutosTermino());
+                }
             }
         }
     }
@@ -83,14 +101,17 @@ public class Dias {
     public Actividades getActividad(int seleccionActividad){
         return actividad.get(seleccionActividad);
     }
+
+    @Override
+    public String generarReporte() {
+        String reporte = "Dia " + this.getNombre() + "\n";
+        if(actividad.size() == 0)
+            reporte += " - El dia no registra actividades.\n";
+        else{
+            for(Actividades aux : actividad){
+                reporte+= aux.generarReporte();
+            }
+        }
+        return reporte;
+    }
 }
-    
-    
-   
-
-
-    
-
-
-
-
