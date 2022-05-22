@@ -212,17 +212,17 @@ public class AdmiProject  {
                 while(exit == false){
                 System.out.println();
                 System.out.println("Ingrese nueva hora de inicio.");
+                System.out.println("Ingrese hora :");
                 int nuevaHoraInicio = Integer.parseInt(leer.readLine());
+                System.out.println("Ingrese minutos :");
+                int nuevosMinutosInicio = Integer.parseInt(leer.readLine());
                 System.out.println();
                 System.out.println("Ingrese nueva hora de termino.");
+                System.out.println("Ingrese hora :");
                 int nuevaHoraTermino = Integer.parseInt(leer.readLine());
+                System.out.println("Ingrese minutos :");
+                int nuevoMinutosTermino = Integer.parseInt(leer.readLine());
                 System.out.println();
-                    if(semana.get(seleccion).verificarVacio()){
-                        System.out.println();
-                        System.out.println(" - El dia no registra actividades.");
-                        System.out.println();
-                        exit = true;
-                    }else{
                         if(semana.get(seleccion).cambiarHora(seleccionActividad, nuevaHoraInicio, nuevaHoraTermino)){
                             System.out.println();
                             System.out.println(" - La hora se cambio correctamente.");
@@ -242,9 +242,8 @@ public class AdmiProject  {
                                 exit = false;
                         }
                     }
-                }
                 break;
-            }
+                }
             case 2:{
                 Actividades actividadAux;
                 actividadAux = semana.get(seleccion).getActividad(seleccionActividad);
@@ -271,11 +270,10 @@ public class AdmiProject  {
                         System.out.println("2.- Salir");
                         System.out.println();
                         int opcion = Integer.parseInt(leer.readLine());
-                        if (opcion == 0)
-                            exit = true;
+                        if (opcion == 0) exit = true;
                     }
                 }
-                break;
+            break;
             }
         }
     }
