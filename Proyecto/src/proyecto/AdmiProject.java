@@ -124,7 +124,7 @@ public class AdmiProject  {
                     }
                 break;
                 case 3:
-                    System.out.println("Indique sala asignada :");
+                    System.out.println("Indique el tipo de actividad :");
                     String tipoActividad = leer.readLine();
                     OtroTipo otroTipoActividad = new OtroTipo();
                     otroTipoActividad.setHoraInicio(horaInicio);
@@ -305,4 +305,55 @@ public class AdmiProject  {
         creador.write(reporte);
         creador.close();
     }
+    public void actividadConMasHoras(){
+        int cantHorasLaborales = 0;
+        int cantHorasAcademicas = 0;
+        int cantHorasOtros = 0;
+        String otrosTipos = "Tipos de actividad : \n";
+        for (Dias auxSemana : semana) {
+            for(int i = 0 ; i < auxSemana.getActividad().size() ; i++){
+                if(auxSemana.getActividad(i) instanceof Laborales){
+                    int suma = auxSemana.getActividad(i).getHoraTermino() - auxSemana.getActividad(i).getHoraInicio();
+                    if(suma <= 0 ){
+                        suma = 24 - auxSemana.getActividad(i).getHoraInicio() + auxSemana.getActividad(i).getHoraTermino();
+                        cantHorasLaborales += suma;
+                    }else 
+                        cantHorasLaborales += suma;
+                    
+                }
+                if(auxSemana.getActividad(i) instanceof Academica){
+                    int suma = auxSemana.getActividad(i).getHoraTermino() - auxSemana.getActividad(i).getHoraInicio();
+                    if(suma <= 0 ){
+                        suma = 24 - auxSemana.getActividad(i).getHoraInicio() + auxSemana.getActividad(i).getHoraTermino();
+                        cantHorasAcademicas += suma;
+                    }else 
+                        cantHorasAcademicas += suma;
+                }
+                if(auxSemana.getActividad(i) instanceof OtroTipo){
+                    int suma = auxSemana.getActividad(i).getHoraTermino() - auxSemana.getActividad(i).getHoraInicio();
+                    if(suma <= 0 ){
+                        suma = 24 - auxSemana.getActividad(i).getHoraInicio() + auxSemana.getActividad(i).getHoraTermino();
+                        cantHorasOtros += suma;
+                    }else 
+                        cantHorasOtros += suma;
+                    
+                    otrosTipos += " * " + ((OtroTipo)auxSemana.getActividad(i)).getOtroTipo() + "\n";
+                }
+            }
+        }
+        System.out.println();
+        if(cantHorasLaborales > cantHorasAcademicas && cantHorasLaborales > cantHorasOtros){
+            System.out.println("El tipo de actividad con mas horas invertidas es: Laboral con un total de: "+cantHorasLaborales+" hrs.");
+        }
+        if(cantHorasAcademicas > cantHorasLaborales && cantHorasAcademicas > cantHorasOtros){
+            System.out.println("El tipo de actividad con mas horas invertidas es: Academica con un total de: "+cantHorasAcademicas+" hrs.");
+        }
+        if(cantHorasOtros > cantHorasLaborales && cantHorasOtros > cantHorasAcademicas){
+            System.out.println("El tipo de actividad con mas horas invertidas es: Otros con un total de: "+cantHorasOtros+" hrs.");
+            System.out.println("Estas horas se reparten entre los siguientes tipos de actividades.");
+            System.out.println(otrosTipos);
+        }
+        if(cantHorasLaborales == 0 && cantHorasAcademicas == 0 && cantHorasOtros == 0) System.out.println(" - No se registran actividades.");
+        
+    } 
 }

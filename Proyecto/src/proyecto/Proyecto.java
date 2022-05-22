@@ -18,7 +18,7 @@ public class Proyecto{
             System.out.println("3.- Editar actividad");
             System.out.println("4.- Mostrar semana");
             System.out.println("5.- Generar reporte");
-           
+            System.out.println("6.- Mostrar tipo de actividad con mas horas.");
             System.out.println("0.- Salir");
             int seleccion = Integer.parseInt(leer.readLine());
             switch (seleccion){
@@ -36,6 +36,9 @@ public class Proyecto{
                     break;
                 case 5:
                     Administrador.generarReporteGeneral();
+                    break;
+                case 6:
+                    Administrador.actividadConMasHoras();
                     break;
                 case 0:
                     exit = 0;

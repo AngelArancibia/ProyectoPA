@@ -24,6 +24,10 @@ public class Dias implements Reporte{
     public void setNombre(String dia) {
         this.nombre = dia;
     }
+
+    public ArrayList<Actividades> getActividad() {
+        return actividad;
+    }
     /*Aqui se realiza la anidacion de arreglos ya que cada dia de la semana tendra anidado
     su actividad y caracteristicas correspondientes.*/
     public boolean agregarActividad (Actividades aux){
@@ -55,24 +59,40 @@ public class Dias implements Reporte{
                     System.out.println(" - Actividad " + (i+1) + ":");
                     Laborales actividadAux = (Laborales)actividad.get(i);
                     System.out.println("   * Tipo de actividad: Laboral.");
-                    System.out.println("   * Hora inicio: " + actividadAux.getHoraInicio()+":"+actividadAux.getMinutosInicio() );
-                    System.out.println("   * Hora termino: " + actividadAux.getHoraTermino()+":"+actividadAux.getMinutosTermino());
-                    System.out.println("   * Lugar de trabajo: "+ actividadAux.getUbicacion());
+                    if(actividad.get(i).getHoraInicio() < 10) System.out.print("   * Hora inicio: 0" + actividadAux.getHoraInicio());
+                    else System.out.print("   * Hora inicio: " + actividadAux.getHoraInicio());
+                    if(actividad.get(i).getMinutosInicio() == 0) System.out.println(":"+actividadAux.getMinutosInicio()+"0");
+                    else System.out.println(":"+actividadAux.getMinutosInicio());
+                    if(actividad.get(i).getHoraTermino() < 10) System.out.print("   * Hora termino: 0" + actividadAux.getHoraTermino());
+                    else System.out.print("   * Hora inicio: " + actividadAux.getHoraTermino());
+                    if(actividad.get(i).getMinutosTermino() == 0) System.out.println(":"+actividadAux.getMinutosTermino()+"0");
+                    else System.out.println(":"+actividadAux.getMinutosTermino());
                 }
                 if(actividad.get(i) instanceof Academica){
                     System.out.println(" - Actividad " + (i+1) + ":");
                     Academica actividadAux = (Academica)actividad.get(i);
                     System.out.println("   * Tipo de actividad: Academica.");
-                    System.out.println("   * Hora inicio: " + actividadAux.getHoraInicio()+":"+actividadAux.getMinutosInicio() );
-                    System.out.println("   * Hora termino: " + actividadAux.getHoraTermino()+":"+actividadAux.getMinutosTermino());
-                    System.out.println("   * Sala asignada: "+ actividadAux.getSala());
+                    if(actividad.get(i).getHoraInicio() < 10) System.out.print("   * Hora inicio: 0" + actividadAux.getHoraInicio());
+                    else System.out.print("   * Hora inicio: " + actividadAux.getHoraInicio());
+                    if(actividad.get(i).getMinutosInicio() == 0) System.out.println(":"+actividadAux.getMinutosInicio()+"0");
+                    else System.out.println(":"+actividadAux.getMinutosInicio());
+                    if(actividad.get(i).getHoraTermino() < 10) System.out.print("   * Hora termino: 0" + actividadAux.getHoraTermino());
+                    else System.out.print("   * Hora inicio: " + actividadAux.getHoraTermino());
+                    if(actividad.get(i).getMinutosTermino() == 0) System.out.println(":"+actividadAux.getMinutosTermino()+"0");
+                    else System.out.println(":"+actividadAux.getMinutosTermino());
                 }
                 if(actividad.get(i) instanceof OtroTipo){
                     System.out.println(" - Actividad " + (i+1) + ":");
                     OtroTipo actividadAux = (OtroTipo)actividad.get(i);
                     System.out.println("   * Tipo de actividad: "+ actividadAux.getOtroTipo()+".");
-                    System.out.println("   * Hora inicio: " + actividadAux.getHoraInicio()+":"+actividadAux.getMinutosInicio() );
-                    System.out.println("   * Hora termino: " + actividadAux.getHoraTermino()+":"+actividadAux.getMinutosTermino());
+                    if(actividad.get(i).getHoraInicio() < 10) System.out.print("   * Hora inicio: 0" + actividadAux.getHoraInicio());
+                    else System.out.print("   * Hora inicio: " + actividadAux.getHoraInicio());
+                    if(actividad.get(i).getMinutosInicio() == 0) System.out.println(":"+actividadAux.getMinutosInicio()+"0");
+                    else System.out.println(":"+actividadAux.getMinutosInicio());
+                    if(actividad.get(i).getHoraTermino() < 10) System.out.print("   * Hora termino: 0" + actividadAux.getHoraTermino());
+                    else System.out.print("   * Hora inicio: " + actividadAux.getHoraTermino());
+                    if(actividad.get(i).getMinutosTermino() == 0) System.out.println(":"+actividadAux.getMinutosTermino()+"0");
+                    else System.out.println(":"+actividadAux.getMinutosTermino());
                 }
             }
         }
@@ -114,4 +134,5 @@ public class Dias implements Reporte{
         }
         return reporte;
     }
+    
 }
