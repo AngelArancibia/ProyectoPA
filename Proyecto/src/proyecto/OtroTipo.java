@@ -30,5 +30,17 @@ public class OtroTipo extends Actividades {
         reporte += "Hora termino: "+ this.getHoraTermino() + ":" + this.getMinutosTermino() + "\n";
         return reporte;
     }
-    
+    @Override
+    public boolean siExiste(String tipo){
+        return tipo.equals(otroTipo);
+    }
+    @Override
+    public void agregarActividadesTipo(AdmiProject auxProject, int horaInicio, int horaTermino, int minutosInicio, int minutosTermino, String tipoActividad) {
+        
+        if(auxProject.siExiste(tipoActividad))
+            auxProject.agregarActividadData(horaInicio, horaTermino, minutosInicio, minutosTermino, tipoActividad.toLowerCase());
+        else
+            auxProject.agregarActividadData(horaInicio, horaTermino, minutosInicio, minutosTermino, tipoActividad);
+        this.setOtroTipo(tipoActividad);
+    }
 }

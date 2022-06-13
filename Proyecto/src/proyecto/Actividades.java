@@ -48,5 +48,11 @@ public abstract class Actividades implements Reporte {
 
     public void setHoraTermino(int horaTermino) {
         this.horaTermino = horaTermino;
-    }    
+    }
+    public boolean siExiste(String tipo){
+        return false;
+    }
+    public abstract void agregarActividadesTipo(AdmiProject auxProject,int horaInicio, int horaTermino, int minutosInicio, int minutosTermino, String identificador );
+    
+    
 }

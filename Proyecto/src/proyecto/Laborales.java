@@ -31,5 +31,18 @@ public class Laborales extends Actividades {
         reporte += "Lugar de trabajo: " + this.getUbicacion() + "\n";
         return reporte;
     }
+    @Override
+    public boolean siExiste(String tipo){
+        return true;
+    }
+
+    @Override
+    public void agregarActividadesTipo(AdmiProject auxProject,int horaInicio, int horaTermino, int minutosInicio, int minutosTermino, String identificador) {
+        if(auxProject.siExiste("academica"))
+            auxProject.agregarActividadData(horaInicio, horaTermino, minutosInicio, minutosTermino, "laboral");
+                else
+            auxProject.agregarActividadData(horaInicio, horaTermino, minutosInicio, minutosTermino, "Laboral");
+        this.setUbicacion(identificador);
+    }
     
 }
